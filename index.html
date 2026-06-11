@@ -8,14 +8,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  --green:      #00ff41;
-  --green-mid:  #00c032;
-  --green-dim:  #007a20;
-  --green-dark: #002a0a;
-  --amber:      #ffb000;
-  --red:        #ff3333;
-  --bg:         #030803;
-  --white:      #d0ffd8;
+  --green:#00ff41;
+  --green-mid:#00c032;
+  --green-dim:#007a20;
+  --green-dark:#002a0a;
+  --amber:#ffb000;
+  --red:#ff3333;
+  --bg:#030803;
+  --white:#d0ffd8;
 }
 
 *, *::before, *::after {
@@ -25,18 +25,18 @@
 }
 
 html, body {
-  background: var(--bg);
-  color: var(--green);
-  font-family: 'Share Tech Mono', monospace;
-  height: 100%;
-  overflow: hidden;
+  background:var(--bg);
+  color:var(--green);
+  font-family:'Share Tech Mono', monospace;
+  height:100%;
+  overflow:hidden;
 }
 
 body::after {
   content:'';
   position:fixed;
   inset:0;
-  background: repeating-linear-gradient(
+  background:repeating-linear-gradient(
     0deg,
     transparent,
     transparent 3px,
@@ -83,21 +83,10 @@ body::after {
   white-space:normal;
 }
 
-.bl.on {
-  opacity:1;
-}
-
-.bl.hi {
-  color:var(--white);
-}
-
-.bl.amb {
-  color:var(--amber);
-}
-
-.bl.red {
-  color:var(--red);
-}
+.bl.on { opacity:1; }
+.bl.hi { color:var(--white); }
+.bl.amb { color:var(--amber); }
+.bl.red { color:var(--red); }
 
 .boot-input-line {
   color:var(--white);
@@ -136,6 +125,12 @@ body::after {
   border-color:var(--green);
   background:rgba(0,255,65,.05);
   outline:none;
+}
+
+@media(min-width:900px){
+  body {
+    zoom:1.65;
+  }
 }
 
 @media(max-width:640px){
