@@ -451,6 +451,29 @@ body::after {
   .t-title { font-size:32px; }
   .bar { font-size:10px; }
 
+  .statusbar {
+    height:auto;
+    min-height:34px;
+    display:grid;
+    grid-template-columns:1fr;
+    padding:7px 12px;
+    gap:2px;
+    font-size:8px;
+    line-height:1.35;
+    letter-spacing:.08em;
+  }
+
+  .statusbar span,
+  .statusbar .s-r {
+    margin-left:0;
+    width:100%;
+    white-space:normal;
+  }
+
+  .statusbar .s-alert {
+    color:var(--amber);
+  }
+
   .doc-footer {
     margin-top:24px;
     padding-top:14px;
