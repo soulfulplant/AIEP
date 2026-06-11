@@ -88,11 +88,36 @@ body::after {
 .bl.amb { color:var(--amber); }
 .bl.red { color:var(--red); }
 
-.boot-input-line {
+.boot-command {
+  display:none;
+  align-items:center;
+  gap:8px;
+  width:min(720px, 90vw);
+  font-size:13px;
+  line-height:2;
   color:var(--white);
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%);
 }
 
-.boot-input-line::after {
+.boot-command.visible {
+  display:flex;
+}
+
+.boot-command input {
+  flex:1;
+  min-width:80px;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:var(--white);
+  font:inherit;
+  caret-color:var(--green);
+}
+
+.boot-command::after {
   content:'█';
   animation:blink 1s infinite;
   margin-left:2px;
@@ -113,6 +138,7 @@ body::after {
   padding:10px 28px;
   cursor:pointer;
   text-transform:uppercase;
+  text-decoration:none;
 }
 
 .boot-proceed.visible {
@@ -129,18 +155,25 @@ body::after {
 
 @media(min-width:900px){
   body {
-    zoom:1.80;
+    zoom:1.65;
   }
 }
 
 @media(max-width:640px){
   #boot-inner {
     width:min(92vw, 720px);
+    padding-bottom:130px;
   }
 
   .bl {
     font-size:12px;
     line-height:1.9;
+  }
+
+  .boot-command {
+    width:min(92vw, 720px);
+    bottom:82px;
+    font-size:12px;
   }
 
   .boot-proceed {
@@ -153,6 +186,12 @@ body::after {
 
 <div class="page active" id="boot">
   <div id="boot-inner"></div>
+
+  <form class="boot-command" id="boot-command" onsubmit="submitBootCommand(event)">
+    <span>&gt;</span>
+    <input id="boot-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false">
+  </form>
+
   <a class="boot-proceed" id="boot-proceed" href="archive.html">Proceed</a>
 </div>
 
@@ -172,15 +211,26 @@ const lines = [
   {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:1500, class:'amb'},
   {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:1750, class:'amb'},
   {t:'', ms:2000},
-  {t:'Proceed? (y/n)', ms:2250},
+  {t:'Proceed? y/n ', ms:2250},
   {t:'Type "y" and press Enter, or click Proceed.', ms:720, class:'amb'},
   {t:'', ms:2500}
 ];
 
-let bootReady = false;
-let bootTyped = '';
-let bootInputLine = null;
-let archiveEntered = false;
+function enterArchive(){
+  window.location.href = archivePage;
+}
+
+function submitBootCommand(e){
+  e.preventDefault();
+
+  const input = document.getElementById('boot-input');
+
+  if (input.value.trim().toLowerCase() === 'y') {
+    enterArchive();
+  } else {
+    input.value = '';
+  }
+}
 
 function runBoot(){
   const c = document.getElementById('boot-inner');
@@ -195,44 +245,13 @@ function runBoot(){
   });
 
   setTimeout(()=>{
-    bootReady = true;
-
-    bootInputLine = document.createElement('div');
-    bootInputLine.className = 'bl on boot-input-line';
-    bootInputLine.textContent = '>';
-    c.appendChild(bootInputLine);
-
+    document.getElementById('boot-command').classList.add('visible');
     document.getElementById('boot-proceed').classList.add('visible');
+
+    setTimeout(()=>{
+      document.getElementById('boot-input').focus();
+    }, 100);
   }, Math.max(...lines.map(l => l.ms)) + 350);
-}
-
-function updateBootInput(){
-  if (!bootInputLine) return;
-  bootInputLine.textContent = '> ' + bootTyped;
-}
-
-document.addEventListener('keydown', function(e){
-  if (!bootReady) return;
-
-  if (e.key.toLowerCase() === 'y') {
-    bootTyped = 'y';
-    updateBootInput();
-  }
-
-  if (e.key === 'Backspace') {
-    bootTyped = '';
-    updateBootInput();
-  }
-
-  if (e.key === 'Enter' && bootTyped.toLowerCase() === 'y') {
-    enterArchive();
-  }
-});
-
-function enterArchive(){
-  if (archiveEntered) return;
-  archiveEntered = true;
-  window.location.href = archivePage;
 }
 
 runBoot();
