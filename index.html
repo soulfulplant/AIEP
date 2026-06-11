@@ -207,12 +207,13 @@ const lines = [
   {t:'', ms:720},
   {t:'This archive was not meant to be public.', ms:900, class:'hi'},
   {t:'We do not know how you found it.', ms:1150, class:'hi'},
+  {t:'We hope you wont share it.', ms:1250, class:'hi'},
   {t:'', ms:1300},
   {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:1500, class:'amb'},
   {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:1750, class:'amb'},
   {t:'', ms:2000},
   {t:'Proceed? y/n ', ms:2250},
-  {t:'Type "y" and press Enter, or click Proceed.', ms:720, class:'amb'},
+  {t:'Type "y" and press Enter, or click Proceed.', ms:2450, class:'amb small'},
   {t:'', ms:2500}
 ];
 
@@ -253,7 +254,13 @@ function runBoot(){
     }, 100);
   }, Math.max(...lines.map(l => l.ms)) + 350);
 }
+.bl.big {
+  font-size:18px;
+}
 
+.bl.amb small {
+  font-size:11px;
+}
 runBoot();
 </script>
 
