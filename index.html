@@ -88,6 +88,14 @@ body::after {
 .bl.amb { color:var(--amber); }
 .bl.red { color:var(--red); }
 
+.bl.big {
+  font-size:18px;
+}
+
+.bl.small {
+  font-size:11px;
+}
+
 .boot-command {
   display:none;
   align-items:center;
@@ -170,6 +178,14 @@ body::after {
     line-height:1.9;
   }
 
+  .bl.big {
+    font-size:16px;
+  }
+
+  .bl.small {
+    font-size:10px;
+  }
+
   .boot-command {
     width:min(92vw, 720px);
     bottom:82px;
@@ -211,8 +227,8 @@ const lines = [
   {t:'', ms:1300},
   {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:1500, class:'amb'},
   {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:1750, class:'amb'},
-  {t:'', ms:2000},
-  {t:'Proceed? y/n ', ms:2250},
+  {t:'', ms:2100},
+  {t:'Proceed? y/n ', ms:2300},
   {t:'Type "y" and press Enter, or click Proceed.', ms:2450, class:'amb small'},
   {t:'', ms:2500}
 ];
@@ -254,13 +270,7 @@ function runBoot(){
     }, 100);
   }, Math.max(...lines.map(l => l.ms)) + 350);
 }
-.bl.big {
-  font-size:18px;
-}
 
-.bl.amb small {
-  font-size:11px;
-}
 runBoot();
 </script>
 
