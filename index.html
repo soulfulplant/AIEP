@@ -129,7 +129,7 @@ body::after {
 
 @media(min-width:900px){
   body {
-    zoom:1.65;
+    zoom:1.80;
   }
 }
 
@@ -153,7 +153,7 @@ body::after {
 
 <div class="page active" id="boot">
   <div id="boot-inner"></div>
-  <button class="boot-proceed" id="boot-proceed" type="button" onclick="enterArchive()">Proceed</button>
+  <a class="boot-proceed" id="boot-proceed" href="archive.html">Proceed</a>
 </div>
 
 <script>
@@ -172,7 +172,8 @@ const lines = [
   {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:1500, class:'amb'},
   {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:1750, class:'amb'},
   {t:'', ms:2000},
-  {t:'Proceed anyway? Type "y" and press Enter, or click Proceed.', ms:2250},
+  {t:'Proceed? (y/n)', ms:2250},
+  {t:'Type "y" and press Enter, or click Proceed.', ms:720, class:'amb'},
   {t:'', ms:2500}
 ];
 
