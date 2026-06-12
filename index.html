@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIVE / TMB - Access</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -25,11 +26,12 @@
 }
 
 html, body {
+  min-height:100%;
   background:var(--bg);
   color:var(--green);
   font-family:'Share Tech Mono', monospace;
-  height:100%;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 body::after {
@@ -53,9 +55,8 @@ body::after {
 }
 
 .page {
-  position:fixed;
-  inset:0;
   display:none;
+  min-height:100dvh;
   flex-direction:column;
 }
 
@@ -64,14 +65,13 @@ body::after {
 }
 
 #boot {
-  justify-content:center;
   align-items:center;
   background:var(--bg);
+  padding:48px 0 72px;
 }
 
 #boot-inner {
   width:min(720px, 90vw);
-  padding-bottom:96px;
 }
 
 .bl {
@@ -81,12 +81,24 @@ body::after {
   opacity:0;
   transition:opacity .1s;
   white-space:normal;
+  overflow-wrap:anywhere;
 }
 
-.bl.on { opacity:1; }
-.bl.hi { color:var(--white); }
-.bl.amb { color:var(--amber); }
-.bl.red { color:var(--red); }
+.bl.on {
+  opacity:1;
+}
+
+.bl.hi {
+  color:var(--white);
+}
+
+.bl.amb {
+  color:var(--amber);
+}
+
+.bl.red {
+  color:var(--red);
+}
 
 .bl.big {
   font-size:18px;
@@ -101,13 +113,10 @@ body::after {
   align-items:center;
   gap:8px;
   width:min(720px, 90vw);
+  margin-top:16em;
   font-size:13px;
   line-height:2;
   color:var(--white);
-  position:fixed;
-  left:50%;
-  bottom:88px;
-  transform:translateX(-50%);
 }
 
 .boot-command.visible {
@@ -132,11 +141,9 @@ body::after {
 }
 
 .boot-proceed {
-  position:fixed;
-  left:50%;
-  bottom:34px;
-  transform:translateX(-50%);
   display:none;
+  margin-top:18px;
+  margin-bottom:48px;
   font-family:'Share Tech Mono', monospace;
   font-size:12px;
   letter-spacing:.16em;
@@ -150,7 +157,7 @@ body::after {
 }
 
 .boot-proceed.visible {
-  display:block;
+  display:inline-block;
 }
 
 .boot-proceed:hover,
@@ -161,16 +168,15 @@ body::after {
   outline:none;
 }
 
-@media(min-width:900px){
-  body {
-    zoom:1.65;
-  }
-}
-
 @media(max-width:640px){
+  #boot {
+    align-items:flex-start;
+    padding:32px 0 56px;
+  }
+
   #boot-inner {
     width:min(92vw, 720px);
-    padding-bottom:130px;
+    margin:0 auto;
   }
 
   .bl {
@@ -188,16 +194,17 @@ body::after {
 
   .boot-command {
     width:min(92vw, 720px);
-    bottom:82px;
+    margin:14em auto 0;
     font-size:12px;
   }
 
   .boot-proceed {
-    bottom:24px;
+    margin:18px auto 56px;
   }
 }
 </style>
 </head>
+
 <body>
 
 <div class="page active" id="boot">
@@ -246,6 +253,7 @@ const lines = [
   {t:'Type "y" and press Enter, or click Proceed.', ms:4250, class:'amb small'},
   {t:'', ms:4300}
 ];
+
 function enterArchive(){
   window.location.href = archivePage;
 }
@@ -262,26 +270,35 @@ function submitBootCommand(e){
   }
 }
 
-function runBoot(){
-  const c = document.getElementById('boot-inner');
+function scrollBootToBottom(){
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
+}
 
-  lines.forEach((l)=>{
+function runBoot(){
+  const container = document.getElementById('boot-inner');
+
+  lines.forEach((line)=>{
     setTimeout(()=>{
-      const d = document.createElement('div');
-      d.className = 'bl on' + (l.class ? ' ' + l.class : '');
-      d.textContent = l.t || '\u00A0';
-      c.appendChild(d);
-    }, l.ms);
+      const div = document.createElement('div');
+      div.className = 'bl on' + (line.class ? ' ' + line.class : '');
+      div.textContent = line.t || '\u00A0';
+      container.appendChild(div);
+      scrollBootToBottom();
+    }, line.ms);
   });
 
   setTimeout(()=>{
     document.getElementById('boot-command').classList.add('visible');
     document.getElementById('boot-proceed').classList.add('visible');
+    scrollBootToBottom();
 
     setTimeout(()=>{
-      document.getElementById('boot-input').focus();
+      document.getElementById('boot-input').focus({ preventScroll:true });
     }, 100);
-  }, Math.max(...lines.map(l => l.ms)) + 350);
+  }, Math.max(...lines.map(line => line.ms)) + 350);
 }
 
 runBoot();
