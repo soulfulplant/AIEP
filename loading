@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIVE / TMB - Loading</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --green:#00ff41;
+  --green-dim:#007a20;
+  --amber:#ffb000;
+  --bg:#030803;
+  --white:#d0ffd8;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html, body {
+  min-height:100%;
+  background:var(--bg);
+  color:var(--green);
+  font-family:'Share Tech Mono', monospace;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,255,65,.02) 3px,
+    rgba(0,255,65,.02) 4px
+  );
+  pointer-events:none;
+  z-index:9999;
+}
+
+.loading-wrap {
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+.loading-box {
+  width:min(680px, 92vw);
+}
+
+.line {
+  font-size:13px;
+  line-height:2;
+  color:var(--green-dim);
+  opacity:0;
+  animation:reveal .15s forwards;
+}
+
+.line.hi {
+  color:var(--white);
+}
+
+.line.amb {
+  color:var(--amber);
+}
+
+.bar {
+  width:100%;
+  height:1px;
+  margin:28px 0 18px;
+  background:var(--green-dim);
+  overflow:hidden;
+}
+
+.bar::before {
+  content:'';
+  display:block;
+  width:35%;
+  height:100%;
+  background:var(--green);
+  animation:loadbar 2.6s ease-in-out forwards;
+}
+
+.status {
+  margin-top:18px;
+  color:var(--amber);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+@keyframes reveal {
+  to { opacity:1; }
+}
+
+@keyframes loadbar {
+  0% { transform:translateX(-120%); }
+  35% { transform:translateX(40%); }
+  70% { transform:translateX(115%); }
+  100% { transform:translateX(190%); }
+}
+
+@media(max-width:640px){
+  .loading-wrap {
+    align-items:flex-start;
+    padding-top:80px;
+  }
+
+  .line {
+    font-size:12px;
+    line-height:1.9;
+  }
+
+  .status {
+    font-size:11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loading-wrap">
+  <div class="loading-box">
+    <div class="line hi" style="animation-delay:0ms;">TRANSFER REQUEST ACCEPTED</div>
+    <div class="line" style="animation-delay:220ms;">Opening /archive/tmb/public_node ...</div>
+    <div class="line" style="animation-delay:460ms;">Negotiating read permissions ... LIMITED</div>
+    <div class="line amb" style="animation-delay:720ms;">WARNING: archive index partially redacted</div>
+    <div class="line" style="animation-delay:980ms;">Reconstructing accessible directories ...</div>
+
+    <div class="bar"></div>
+
+    <div class="status">Loading archive interface</div>
+  </div>
+</div>
+
+<script>
+setTimeout(() => {
+  window.location.href = 'archive.html';
+}, 3600);
+</script>
+
+</body>
+</html>
