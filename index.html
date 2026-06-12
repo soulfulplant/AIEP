@@ -215,24 +215,37 @@ body::after {
 const archivePage = 'archive.html';
 
 const lines = [
-  {t:'BIOS v2.1.4 ... OK', ms:0},
-  {t:'Memory check 65536K ... OK', ms:130},
-  {t:'Mounting /archive/tmb/ ...', ms:280},
-  {t:'Integrity check ... ', ms:440},
-  {t:'WARNING: 6 of 7 dirs locked', ms:620, class:'amb'},
-  {t:'', ms:720},
-  {t:'This archive was not meant to be public.', ms:900, class:'hi'},
-  {t:'We do not know how you found it.', ms:1150, class:'hi'},
-  {t:'We hope you wont share it.', ms:1250, class:'hi'},
-  {t:'', ms:1300},
-  {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:1500, class:'amb'},
-  {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:1750, class:'amb'},
-  {t:'', ms:2100},
-  {t:'Proceed? y/n ', ms:2300},
-  {t:'Type "y" and press Enter, or click Proceed.', ms:2450, class:'amb small'},
-  {t:'', ms:2500}
-];
+  {t:'> wake archive-node /tmb', ms:0},
+  {t:'NODE RESPONSE: PARTIAL', ms:130, class:'amb'},
+  {t:'Adaptive Intelligence Evolution Protocol', ms:260, class:'hi'},
+  {t:'BIOS v2.1.4 ... OK', ms:390},
+  {t:'Memory check 65536K ... OK', ms:520},
+  {t:'', ms:650},
 
+  {t:'> request /archive/tmb/index.manifest', ms:820},
+  {t:'Mounting /archive/tmb/ ...', ms:980},
+  {t:'Reading index.manifest ...', ms:1140},
+  {t:'Integrity check ... ', ms:1300},
+  {t:'WARNING: 6 of 7 dirs locked', ms:1460, class:'amb'},
+  {t:'PUBLIC ACCESS FLAG: TRUE', ms:1620, class:'amb'},
+  {t:'SOURCE: UNKNOWN', ms:1780, class:'amb'},
+  {t:'', ms:1940},
+
+  {t:'> open notice.txt', ms:2160},
+  {t:'', ms:2280},
+  {t:'This archive was not meant to be public.', ms:2460, class:'hi'},
+  {t:'We do not know how you found it.', ms:2710, class:'hi'},
+  {t:"We hope you won't share it.", ms:2860, class:'hi'},
+  {t:'', ms:3000},
+
+  {t:'DISCLAIMER: This site is a work of fiction created for entertainment purposes.', ms:3260, class:'amb'},
+  {t:'Any resemblance to real persons, organizations, events, or systems is coincidental.', ms:3510, class:'amb'},
+  {t:'', ms:3860},
+
+  {t:'Proceed? y/n ', ms:4100},
+  {t:'Type "y" and press Enter, or click Proceed.', ms:4250, class:'amb small'},
+  {t:'', ms:4300}
+];
 function enterArchive(){
   window.location.href = archivePage;
 }
