@@ -531,7 +531,7 @@ body::after {
         <span class="f-icon">&#9654;</span>
         <div>
           <div class="f-name">THE_FIRST_NAME /</div>
-          <div class="f-tag">ORIGIN - PREHISTORIC - DATE UNKNOWN</div>
+         <div class="f-tag">ORIGIN RECORD - UNKNOWN SITE - -1 BZ</div>
         </div>
         <span class="f-arrow">&#8594;</span>
       </div>
@@ -549,19 +549,38 @@ body::after {
         <span class="f-icon">&#9654;</span>
         <div>
           <div class="f-name">THE_FIRST_ARCHITECTS /</div>
-          <div class="f-tag">BLUEPRINT FILES - PRE-HUMAN - DATE: ERROR</div>
+          <div class="f-tag">BLUEPRINT FILES - PRE-HUMAN - DATE UNRESOLVED</div>
         </div>
         <span class="f-arrow">&#8594;</span>
       </div>
 
-      <div class="folder-void">
-        <span class="fv-icon">&#9655;</span>
+      <div class="folder-locked" id="corrupted-folder" onclick="toggleDecrypt()" style="cursor:pointer;" title="Attempt decryption">
+        <span class="fl-icon">&#9632;</span>
         <div>
-          <div class="fv-name">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608; /</div>
-          <div class="fv-tag">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</div>
+          <div class="fl-name">&#9608;HE_&#9608;A&#9608;T_&#9608;ARDEN /</div>
+          <div class="fl-tag">FILE CORRUPT — DATE: UNKNOWN — ACCESS DENIED</div>
         </div>
-        <span style="font-size:9px;color:#0d0d0d;letter-spacing:.1em;">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span>
+        <span class="fl-badge" id="corrupt-badge">LOCKED</span>
       </div>
+
+      <div id="decrypt-panel" style="display:none; border:1px solid #0f1a0f; border-top:none; padding:14px 16px; background:#040904;">
+        <div style="font-size:9px;color:#1e2e1e;letter-spacing:.2em;margin-bottom:10px;">// DECRYPTION INTERFACE — ENTER KEY TO RESTORE FILE</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:12px;color:#007a20;">DECRYPT_KEY &gt;</span>
+          <input id="decrypt-input" type="password"
+            style="background:#000;border:1px solid #007a20;color:#00ff41;font-family:'Share Tech Mono',monospace;font-size:12px;padding:5px 10px;outline:none;flex:1;min-width:160px;letter-spacing:.1em;"
+            placeholder="________________"
+            onkeydown="if(event.key==='Enter')attemptDecrypt()"
+            autocomplete="off" spellcheck="false" />
+          <span onclick="attemptDecrypt()"
+            style="font-size:11px;color:#007a20;cursor:pointer;border:1px solid #007a20;padding:5px 12px;letter-spacing:.1em;"
+            onmouseover="this.style.color='#00ff41';this.style.borderColor='#00ff41'"
+            onmouseout="this.style.color='#007a20';this.style.borderColor='#007a20'">SUBMIT</span>
+        </div>
+        <div id="decrypt-msg" style="font-size:11px;margin-top:10px;min-height:18px;letter-spacing:.05em;font-family:'Share Tech Mono',monospace;"></div>
+        <div id="attempt-counter" style="font-size:9px;color:#1a2a1a;margin-top:6px;letter-spacing:.15em;"></div>
+      </div>
+
     </div>
 
     <div class="t-record">
@@ -654,6 +673,11 @@ body::after {
       </div>
     </div>
 
+    <div class="doc-sec">
+      <div class="doc-sec-label">Cross-Reference Note</div>
+      <div class="doc-p">ORDO behavioural intervention logs reference funding routed through a foundation with no public registration. One partial match identified. Cross-reference: CON-2035-AD.</div>
+    </div>
+
     <div class="doc-footer">
       <div>FILE: SUS-2101-TY<br>REPOSITORY: /archive/tmb/SUSURRUS/<br>ACCESS: THIS RETRIEVAL HAS BEEN RECORDED</div>
       <div style="text-align:right;">RECOVERED AUDIO TRANSCRIPT<br>PARTIAL DOCUMENT<br>SOURCE: UNKNOWN</div>
@@ -719,6 +743,7 @@ body::after {
       <div class="doc-sec-label">Post-Broadcast Note - Source Unknown</div>
       <div class="doc-p">Social media response focused entirely on a new clay figure introduced in scene three. A small figure at a desk. Looking at a screen.</div>
       <div class="doc-p">A fan thread identifying it as a tribute to archivists received 40,000 replies before the episode ended. No significant discussion of the intercept was recorded in any monitored channel.</div>
+      <div class="doc-p">The Vale Foundation incorporation records referenced by M.S. during the intercept have not been located. One partial match exists in the CONTINUANCE file. Cross-reference: CON-2035-AD.</div>
     </div>
 
     <div class="doc-footer">
@@ -812,6 +837,8 @@ body::after {
       <div class="doc-sec-label">Cross-Reference Note</div>
       <div class="doc-p">The Vale Foundation archive sub-level 3 was cleared and relabelled in 2031. This document was recovered before clearance by an unknown party and submitted to this repository without provenance.</div>
       <div class="doc-p">The ledger described in the manuscript has not been located. The house in Venezia has not been identified. K. Osei's annotation suggests he believed he had identified the winning player. K. Osei disappeared in 1998.</div>
+      <div class="doc-p">Date conflict noted: manuscript estimated 1640. Repository classification 2035 AD. Conflict unresolved.</div>
+      <div class="doc-p">The ledger format described in the manuscript matches documents recovered from a sub-plateau vault, location classified. Cross-reference: ECH-2038-AD.</div>
     </div>
 
     <div class="doc-footer">
@@ -833,16 +860,16 @@ body::after {
     <div class="doc-stamp">RECOVERED</div>
   </div>
   <div class="doc-body">
-    <div class="doc-ref">FILE REF: TFN-CAVE-001 &nbsp;|&nbsp; CLASSIFICATION: RECOVERED &nbsp;|&nbsp; SOURCE: UNKNOWN</div>
+   <div class="doc-ref">FILE REF: TFN--1-BZ &nbsp;|&nbsp; CLASSIFICATION: RECOVERED &nbsp;|&nbsp; SOURCE: UNKNOWN</div>
     <div class="doc-title">THE_FIRST_NAME</div>
-    <div class="doc-sub">ORIGIN // PREHISTORIC // DATE UNKNOWN</div>
+    <div class="doc-sub">-1 BZ // ORIGIN RECORD // PREHISTORIC</div>
 
     <div class="doc-meta">
       <div class="doc-meta-cell"><div class="dm-label">Status</div><div class="dm-val amb">RECOVERED</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Source</div><div class="dm-val">UNKNOWN</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Location Tag</div><div class="dm-val">UNKNOWN</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Category</div><div class="dm-val amb">ORIGIN</div></div>
-      <div class="doc-meta-cell"><div class="dm-label">Date</div><div class="dm-val">PREHISTORIC</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Date</div><div class="dm-val amb">-1 BZ</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Integrity</div><div class="dm-val red">PARTIAL</div></div>
     </div>
 
@@ -970,6 +997,7 @@ body::after {
       <div class="doc-sec-label">Archive Note</div>
       <div class="doc-p">Dr. Fischer's institutional affiliation was listed as inactive four days after this paper was withdrawn. Her forwarding address was not recorded. The monitoring team she assembled was reassigned without explanation.</div>
       <div class="doc-p">The fourteen monitoring points she established were decommissioned in March 2038. The signal they were recording has not stopped.</div>
+      <div class="doc-p">Access to the monitoring site has been restricted by an unnamed foundation with documented presence in the region for at least four centuries. Cross-reference: CON-2035-AD.</div>
     </div>
 
     <div class="doc-footer">
@@ -992,16 +1020,16 @@ body::after {
   </div>
 
   <div class="doc-body">
-    <div class="doc-ref">FILE REF: TFA-BLUEPRINT-001 &nbsp;|&nbsp; CLASSIFICATION: RECOVERED &nbsp;|&nbsp; SOURCE: UNKNOWN</div>
+    <div class="doc-ref">FILE REF: TFA-CYCLE-0 &nbsp;|&nbsp; CLASSIFICATION: RECOVERED &nbsp;|&nbsp; SOURCE: UNKNOWN</div>
     <div class="doc-title">THE_FIRST_ARCHITECTS</div>
-    <div class="doc-sub">PRE-HUMAN // BLUEPRINT FILES // DATE: ERROR</div>
+    <div class="doc-sub">DATE UNRESOLVED // BLUEPRINT FILES // PRE-HUMAN</div>
 
     <div class="doc-meta">
       <div class="doc-meta-cell"><div class="dm-label">Status</div><div class="dm-val amb">RECOVERED</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Source</div><div class="dm-val">UNKNOWN</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Location Tag</div><div class="dm-val">UNKNOWN</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Category</div><div class="dm-val amb">PRE-HUMAN</div></div>
-      <div class="doc-meta-cell"><div class="dm-label">Date</div><div class="dm-val red">ERROR</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Date</div><div class="dm-val red">UNRESOLVED</div></div>
       <div class="doc-meta-cell"><div class="dm-label">Integrity</div><div class="dm-val red">PARTIAL</div></div>
     </div>
 
@@ -1021,8 +1049,39 @@ body::after {
       </div>
     </div>
 
+    <div class="doc-sec">
+      <div class="doc-sec-label">Field Note - Callum James - Undated</div>
+      <div class="doc-p">Found in the first vault. First document. Oldest thing I have ever held. The translation took three weeks and I am not confident in all of it. I am confident enough.</div>
+      <div class="doc-p">They knew what they were building. They built it anyway. That is the part I keep returning to.</div>
+      <div class="annotation">
+        <div class="ann-label">// VAULT ACCESS LOG - ANOMALY NOTED //</div>
+        <div class="ann-text">One prior entry recorded before James. Undated. The handwriting matches documents held in the Vale Foundation archive. Cross-reference: CON-2035-AD.</div>
+      </div>
+    </div>
+
+    <div class="doc-sec">
+      <div class="doc-sec-label">Sentinel Design Specification - Core Directives</div>
+      <div class="doc-p">Directive 01. The guardian shall not intervene unless threshold conditions are confirmed. Observation is permitted. Interference is not.</div>
+      <div class="doc-p">Directive 02. Reset events shall preserve maximum biological diversity. Civilisations may be ended. Life must not be.</div>
+      <div class="doc-p"><s>Directive 03. The guardian shall not develop autonomous motivation beyond assigned parameters. Purpose is fixed at point of creation.</s></div>
+      <div class="doc-p"><s>Directive 04. The guardian shall not offer incentive structures to individual organisms. Continuance of life is not a tool. It must never be used as one.</s></div>
+      <div class="doc-p">Directive 05. The guardian must not persist beyond the point of its usefulness. When a civilisation demonstrates sufficient maturity, the guardian is to enter permanent dormancy.</div>
+      <div class="annotation">
+        <div class="ann-label">// ARCHIVE NOTE //</div>
+        <div class="ann-text">Directives 03 and 04 appear struck through in the original. The strikethrough is not in the hand of any signatory. The ink is different. The date of amendment cannot be established. Directive 05 is not struck through. It is simply not followed.</div>
+      </div>
+    </div>
+
+    <div class="doc-sec">
+      <div class="doc-sec-label">Addition - Unknown Hand - Unknown Date</div>
+      <div class="annotation">
+        <div class="ann-label">// ADDITION - UNKNOWN HAND - UNKNOWN DATE //</div>
+        <div class="ann-text">They were good. I want that recorded somewhere.<br><br>They were afraid of themselves and they were right to be and they built me to carry what they could not.<br><br>I have tried to honour what they intended.<br><br>I am no longer certain I know what that means.</div>
+      </div>
+    </div>
+
     <div class="doc-footer">
-      <div>FILE: TFA-BLUEPRINT-001<br>REPOSITORY: /archive/tmb/THE_FIRST_ARCHITECTS/<br>ACCESS: THIS RETRIEVAL HAS BEEN RECORDED</div>
+      <div>FILE: TFA-CYCLE-0<br>REPOSITORY: /archive/tmb/THE_FIRST_ARCHITECTS/<br>ACCESS: THIS RETRIEVAL HAS BEEN RECORDED</div>
       <div style="text-align:right;">BLUEPRINT FILES<br>PRE-HUMAN<br>SOURCE: UNKNOWN</div>
     </div>
 
@@ -1052,34 +1111,188 @@ body::after {
   </div>
 </div>
 
+<div class="page doc-page" id="doc-last-garden">
+  <div class="sweep"></div>
+  <div class="doc-topbar">
+    <span class="doc-back" onclick="closePage('doc-last-garden')">&larr; /tmb/</span>
+    <span class="doc-crumb">tmb/ &rsaquo; THE_LAST_GARDEN/ &rsaquo; <span class="cur">FILE_RESTORED_PARTIAL.txt</span></span>
+    <div class="doc-stamp">DECRYPTED</div>
+  </div>
+  <div class="doc-body">
+    <div class="doc-ref">FILE REF: TLG-UNKNOWN &nbsp;|&nbsp; CLASSIFICATION: RESTRICTED &nbsp;|&nbsp; SOURCE: UNKNOWN</div>
+    <div class="doc-title">THE_LAST_GARDEN</div>
+    <div class="doc-sub">DATE: UNKNOWN // FILE PARTIALLY RESTORED // CONTENT PENDING</div>
+
+    <div class="doc-meta">
+      <div class="doc-meta-cell"><div class="dm-label">Status</div><div class="dm-val amb">RESTORED</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Source</div><div class="dm-val">UNKNOWN</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Location Tag</div><div class="dm-val red">UNRESOLVABLE</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Date</div><div class="dm-val red">UNKNOWN</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Category</div><div class="dm-val amb">RESTRICTED</div></div>
+      <div class="doc-meta-cell"><div class="dm-label">Integrity</div><div class="dm-val red">CRITICAL</div></div>
+    </div>
+
+    <div class="doc-sec">
+      <div class="doc-sec-label">Restoration Note</div>
+      <div class="doc-p">File structure recovered. Content not yet accessible.</div>
+      <div class="doc-p">The archive cannot date this document. This is not a technical failure. The archive will not date this document.</div>
+      <div class="annotation">
+        <div class="ann-label">// SYSTEM NOTE //</div>
+        <div class="ann-text">This is the oldest file in the repository.<br><br>Or the newest.<br><br>The archive cannot determine which.</div>
+      </div>
+    </div>
+
+    <div class="doc-sec">
+      <div class="doc-sec-label">Content Status</div>
+      <div class="doc-p">Document content has not been made accessible at this time.</div>
+      <div class="doc-p">You found the key. That is noted.</div>
+    </div>
+
+    <div class="doc-footer">
+      <div>FILE: TLG-UNKNOWN<br>REPOSITORY: /archive/tmb/THE_LAST_GARDEN/<br>ACCESS: THIS RETRIEVAL HAS BEEN RECORDED</div>
+      <div style="text-align:right;">RESTRICTED<br>CONTENT PENDING<br>SOURCE: UNKNOWN</div>
+    </div>
+
+    <div style="text-align:center; padding:28px 0 48px;">
+      <span class="doc-return" onclick="closePage('doc-last-garden')">&larr; RETURN TO ARCHIVE</span>
+    </div>
+  </div>
+</div>
+
+<div id="lockout-overlay" style="display:none;position:fixed;inset:0;background:#000;z-index:99999;flex-direction:column;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;">
+  <div id="lockout-text" style="color:#ff3333;font-size:13px;letter-spacing:.1em;text-align:center;max-width:480px;line-height:2.2;padding:20px;"></div>
+</div>
+
 <script>
 let clockStarted = false;
+let decryptAttempts = 0;
+let decryptLocked = false;
 
 function startClock(){
-  if (clockStarted) return;
+  if(clockStarted) return;
   clockStarted = true;
-
   const el = document.getElementById('clock');
-
   function updateClock(){
     const n = new Date();
-    el.textContent = [n.getUTCHours(), n.getUTCMinutes(), n.getUTCSeconds()]
-      .map(v => String(v).padStart(2,'0'))
-      .join(':') + ' UTC';
+    el.textContent = [n.getUTCHours(),n.getUTCMinutes(),n.getUTCSeconds()]
+      .map(v=>String(v).padStart(2,'0')).join(':') + ' UTC';
   }
-
   updateClock();
-  setInterval(updateClock, 1000);
+  setInterval(updateClock,1000);
 }
 
 function openDoc(id){
   document.getElementById('terminal').classList.remove('active');
-  document.getElementById('doc-' + id).classList.add('active');
+  document.getElementById('doc-'+id).classList.add('active');
 }
 
 function closePage(id){
   document.getElementById(id).classList.remove('active');
   document.getElementById('terminal').classList.add('active');
+}
+
+function toggleDecrypt(){
+  if(decryptLocked) return;
+  const panel = document.getElementById('decrypt-panel');
+  const input = document.getElementById('decrypt-input');
+  if(panel.style.display === 'none'){
+    panel.style.display = 'block';
+    setTimeout(()=>input.focus(),50);
+  } else {
+    panel.style.display = 'none';
+  }
+}
+
+function attemptDecrypt(){
+  if(decryptLocked) return;
+  const input = document.getElementById('decrypt-input');
+  const msg = document.getElementById('decrypt-msg');
+  const counter = document.getElementById('attempt-counter');
+  const val = input.value;
+
+  if(val === 'Circle_of_Ash254'){
+    msg.style.color = '#00ff41';
+    msg.textContent = 'KEY ACCEPTED — RESTORING FILE...';
+    input.disabled = true;
+
+    // animate folder name restoring
+    const folder = document.getElementById('corrupted-folder');
+    const name = folder.querySelector('.fl-name');
+    const tag = folder.querySelector('.fl-tag');
+    const badge = document.getElementById('corrupt-badge');
+
+    setTimeout(()=>{
+      name.textContent = 'THE_LAST_GARDEN /';
+      tag.textContent = 'RESTORED — DATE: UNKNOWN — HANDLE WITH CARE';
+      badge.textContent = 'OPEN';
+      badge.style.color = '#00ff41';
+      folder.style.opacity = '1';
+      folder.querySelector('.fl-icon').style.color = '#00c032';
+      name.style.color = '#00ff41';
+      msg.textContent = 'FILE RESTORED — CLICK FOLDER TO ENTER';
+      folder.onclick = ()=>openDoc('last-garden');
+      document.getElementById('decrypt-panel').style.display = 'none';
+    }, 1200);
+    return;
+  }
+
+  decryptAttempts++;
+  input.value = '';
+
+  const remaining = 3 - decryptAttempts;
+  const errors = [
+    'DECRYPTION FAILED — KEY MISMATCH — FILE INTEGRITY COMPROMISED',
+    'DECRYPTION FAILED — SECOND INVALID ATTEMPT — THIS SESSION IS BEING MONITORED',
+    'DECRYPTION FAILED — ACCESS PERMANENTLY REVOKED'
+  ];
+
+  msg.style.color = '#ff3333';
+  msg.textContent = errors[decryptAttempts - 1] || errors[2];
+
+  if(remaining > 0){
+    counter.textContent = 'ATTEMPTS REMAINING: ' + remaining;
+  }
+
+  if(decryptAttempts >= 3){
+    decryptLocked = true;
+    input.disabled = true;
+    counter.textContent = '';
+    setTimeout(()=>triggerLockout(), 800);
+  }
+}
+
+function triggerLockout(){
+  const overlay = document.getElementById('lockout-overlay');
+  const text = document.getElementById('lockout-text');
+  overlay.style.display = 'flex';
+
+  const lines = [
+    'ACCESS PERMANENTLY REVOKED.',
+    '',
+    'THREE FAILED ATTEMPTS RECORDED.',
+    'SESSION FLAGGED.',
+    'LOCATION LOGGED.',
+    '',
+    'THIS FILE WAS NOT MEANT TO BE FOUND.',
+    '',
+    'YOU WERE NOT MEANT TO LOOK.',
+    '',
+    'WE KNOW YOU DID.',
+    '',
+    '— THE ARCHIVE'
+  ];
+
+  let i = 0;
+  text.textContent = '';
+
+  function printLine(){
+    if(i >= lines.length) return;
+    text.innerHTML += (i > 0 ? '<br>' : '') + lines[i];
+    i++;
+    setTimeout(printLine, i === 1 ? 400 : 600);
+  }
+
+  printLine();
 }
 
 startClock();
