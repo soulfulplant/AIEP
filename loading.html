@@ -97,6 +97,33 @@ body::after {
   text-transform:uppercase;
 }
 
+.access-row {
+  text-align:center;
+}
+
+.access-button {
+  display:inline-block;
+  margin-top:18em;
+  font-family:'Share Tech Mono', monospace;
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--green);
+  background:transparent;
+  border:1px solid var(--green-dim);
+  padding:10px 28px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+
+.access-button:hover,
+.access-button:focus-visible {
+  color:var(--white);
+  border-color:var(--green);
+  background:rgba(0,255,65,.05);
+  outline:none;
+}
+
 @keyframes reveal {
   to { opacity:1; }
 }
@@ -139,6 +166,10 @@ body::after {
     <div class="bar"></div>
 
     <div class="status">Loading archive interface</div>
+
+<div class="access-row">
+  <a class="access-button" href="archive.html">Access Archive</a>
+</div>
   </div>
 </div>
 
