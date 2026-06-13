@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIVE / TMB - External Listing</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --green:#00ff41;
+  --green-dim:#007a20;
+  --amber:#ffb000;
+  --bg:#030803;
+  --white:#d0ffd8;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html, body {
+  min-height:100%;
+  background:var(--bg);
+  color:var(--green);
+  font-family:'Share Tech Mono', monospace;
+  overflow-x:hidden;
+}
+
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,255,65,.02) 3px,
+    rgba(0,255,65,.02) 4px
+  );
+  pointer-events:none;
+  z-index:9999;
+}
+
+.page {
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 24px;
+}
+
+.terminal {
+  width:min(760px, 92vw);
+}
+
+.line {
+  font-size:13px;
+  line-height:2;
+  color:var(--green-dim);
+  overflow-wrap:anywhere;
+}
+
+.line.hi {
+  color:var(--white);
+}
+
+.line.amb {
+  color:var(--amber);
+}
+
+.gap {
+  height:24px;
+}
+
+.title {
+  color:var(--white);
+  font-size:18px;
+  line-height:1.7;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.panel {
+  margin-top:26px;
+  padding-top:22px;
+  border-top:1px solid var(--green-dim);
+}
+
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:40px;
+}
+
+.access-button {
+  display:inline-block;
+  font-family:'Share Tech Mono', monospace;
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--green);
+  background:transparent;
+  border:1px solid var(--green-dim);
+  padding:10px 24px;
+  cursor:pointer;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+
+.access-button.primary {
+  color:var(--white);
+  border-color:var(--green);
+}
+
+.access-button:hover,
+.access-button:focus-visible {
+  color:var(--white);
+  border-color:var(--green);
+  background:rgba(0,255,65,.05);
+  outline:none;
+}
+
+@media(max-width:640px){
+  .page {
+    align-items:flex-start;
+    padding:40px 18px 64px;
+  }
+
+  .line {
+    font-size:12px;
+    line-height:1.9;
+  }
+
+  .title {
+    font-size:15px;
+  }
+
+  .actions {
+    flex-direction:column;
+  }
+
+  .access-button {
+    width:100%;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+  <main class="terminal">
+    <div class="line">&gt; request external_commerce_node</div>
+    <div class="line amb">NODE RESPONSE: REDIRECT AVAILABLE</div>
+    <div class="line">Verifying public listing ... OK</div>
+    <div class="line">Source: AMAZON Library</div>
+    <div class="line amb">Archive note: leaving /archive/tmb/ environment</div>
+
+    <div class="gap"></div>
+
+    <h1 class="title">THE BOOK SERIES IS AVAILABLE OUTSIDE THE ARCHIVE</h1>
+
+    <section class="panel">
+      <div class="line hi">Recovered materials continue in print.</div>
+      <div class="line hi">Use the external listing below to view the series on Amazon.</div>
+
+      <div class="gap"></div>
+
+      <div class="line amb">DISCLAIMER: Amazon availability, pricing, and territory access may change.</div>
+      <div class="line amb">You are about to open an external page.</div>
+
+      <div class="actions">
+        <a class="access-button primary" href="https://www.amazon.com/" target="_blank" rel="noopener noreferrer">Open Listing</a>
+        <a class="access-button" href="archive.html">Return to Archive</a>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
