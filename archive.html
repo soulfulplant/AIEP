@@ -417,6 +417,72 @@ body::after {
   background:rgba(0,255,65,.03);
 }
 
+/* Readability pass: retain the dark archive palette while lifting low-contrast text. */
+.bar,
+.statusbar { color:#1db545; }
+
+.t-sub { color:#21b84a; }
+.t-warning { border-color:#742424; }
+.t-warning p { color:#b94c4c; }
+.t-dir-label {
+  color:#28c653;
+  border-bottom-color:#167d34;
+}
+
+.f-tag,
+.f-arrow { color:#20ae47; }
+.folder-locked { opacity:.65; }
+.fl-icon,
+.fl-name { color:#176b2f; }
+.fl-tag,
+.fl-badge { color:#2c6f3d; }
+
+.t-record { border-left-color:#176f32; }
+.t-record-id { color:#25bd4e; }
+.t-record-text { color:#79a780; }
+.t-record-src { color:#577a5c; }
+
+.doc-back { color:#2bbf51; }
+.doc-crumb { color:#587b5c; }
+.doc-crumb .cur { color:#75a17a; }
+.doc-stamp { opacity:.95; }
+.doc-ref { color:#608a65; }
+.doc-sub { color:#6b996f; border-bottom-color:#24442a; }
+
+.doc-meta { border-color:#29472e; background:#29472e; }
+.doc-meta-cell { background:#081208; }
+.dm-label { color:#648e68; }
+.dm-val { color:#85ad89; }
+.dm-val.amb,
+.dm-val.red { opacity:1; }
+
+.doc-sec-label { color:#6f9b74; }
+.doc-sec-label::after { background:#26452c; }
+.doc-p { color:#82ae88; }
+.doc-p strong { color:#b2d4b6; }
+
+.annotation {
+  border-color:#345b3b;
+  background:#061006;
+}
+.ann-label { color:#6f9774; }
+.ann-text { color:#94bc99; }
+
+.doc-photo { border-color:#2e5034; }
+.doc-photo-cap { color:#729978; }
+.doc-footer {
+  color:#648a69;
+  border-top-color:#29482f;
+}
+.doc-return {
+  color:#43a85b;
+  border-color:#327a45;
+}
+
+#decrypt-panel > div:first-child,
+#attempt-counter { color:#628968 !important; }
+#decrypt-panel span { color:#24b94b !important; }
+
 @media(min-width:900px){
   body { zoom:1.60; }
 }
